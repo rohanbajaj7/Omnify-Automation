@@ -23,7 +23,7 @@ class TestLogin:
 
         pim_page = PIMPage(self.driver)
 
-        # Safe click on PIM menu with retry
+        #  PIM menu with retry
         def safe_click_pim_menu():
             tries = 3
             for attempt in range(tries):
@@ -37,10 +37,10 @@ class TestLogin:
                     time.sleep(2)
             raise Exception("Failed to click PIM menu after retries")
 
-        # Use safe click on PIM menu
+        #  click on PIM menu
         safe_click_pim_menu()
 
-        # Function to add an employee
+        # add an employee
         def add_employee(first_name, last_name, emp_id, username, password):
             safe_click_pim_menu()
             wait.until(EC.invisibility_of_element_located((By.CSS_SELECTOR, "div.oxd-form-loader")))
@@ -58,7 +58,7 @@ class TestLogin:
         add_employee("Rahul", "Sharma", "1568", "rahul123", "Rahul@12345")
         add_employee("Amit", "Kumar", "1569", "amit123", "Amit@12345")
 
-        # Go back to employee list
+        
         safe_click_pim_menu()
         wait.until(EC.invisibility_of_element_located((By.CSS_SELECTOR, "div.oxd-form-loader")))
 
@@ -127,7 +127,7 @@ class TestLogin:
         for nf in not_found:
             print(f"{nf} NOT found")
 
-        # Delete employees one by one with correct input locator
+        # Delete employees one by one 
         def delete_employee(emp_id):
             print(f"Deleting employee ID: {emp_id}")
             safe_click_pim_menu()
