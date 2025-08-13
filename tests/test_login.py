@@ -154,4 +154,24 @@ class TestLogin:
         for eid in target_employee_ids:
             delete_employee(eid)
 
-        print("All target employees deleted successfully!")
+        print("All target employees deleted successfully!")  
+
+        # ------------------- Logout Logic -------------------
+        def logout():
+            # Click on profile picture to open dropdown
+            profile_pic = wait.until(EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, "img.oxd-userdropdown-img")
+            ))
+            profile_pic.click()
+            
+            # Click on Logout link
+            logout_link = wait.until(EC.element_to_be_clickable(
+                (By.XPATH, "//a[@href='/web/index.php/auth/logout']")
+            ))
+            logout_link.click()
+            
+            wait.until(EC.url_contains("/auth/login"))
+            print("Logged out successfully!")
+
+        # Call logout at the end of the test
+        logout()
